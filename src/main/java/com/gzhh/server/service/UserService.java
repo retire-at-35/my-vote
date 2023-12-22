@@ -20,7 +20,7 @@ public interface UserService extends IService<User> {
 
 //    void register(RegisterDTO registerDTO,HttpServletRequest request);
 
-    void getCode(HttpSession session, HttpServletResponse httpServletResponse) throws IOException;
+   // void getCode(HttpSession session, HttpServletResponse httpServletResponse) throws IOException;
 
     void register(RegisterDTO registerDTO);
 }

@@ -13,8 +13,6 @@ import com.gzhh.pojo.entity.Competitors;
 import com.gzhh.pojo.entity.User;
 import com.gzhh.server.mapper.UserMapper;
 import com.gzhh.server.service.UserService;
-import com.wf.captcha.SpecCaptcha;
-import com.wf.captcha.base.Captcha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,31 +94,31 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 //    }
 
 
-    //返回验证码图片
-    public void getCode(HttpSession session, HttpServletResponse httpServletResponse) throws IOException {
-        httpServletResponse.setHeader("Cache-Control","no-store");
-        //允许跨域
-        httpServletResponse.setHeader("Access-Control-Allow-Credentials","true");
-        httpServletResponse.setHeader("Pragma","no-cache");
-        httpServletResponse.setDateHeader("Expires",0);
-        Cookie cookie = new Cookie("cookie_name", "cookie_value");
-        cookie.setSecure(true);
-        httpServletResponse.addCookie(cookie);
-//        httpServletResponse.setContentType("image/gif");
-
-        //生成验证码对象,三个参数分别是宽、高、位数
-        SpecCaptcha captcha = new SpecCaptcha(130, 48, 5);
-        //设置验证码的字符类型为数字和字母混合
-        captcha.setCharType(Captcha.TYPE_DEFAULT);
-        // 设置内置字体
-        captcha.setCharType(Captcha.FONT_1);
-        //验证码存入session
-        session.setAttribute("verifyCode",captcha.text().toLowerCase()+"");
-        log.info("session为{}",session.hashCode());
-        log.info("验证码为{}",captcha.text().toLowerCase());
-        //输出图片流
-        captcha.out(httpServletResponse.getOutputStream());
-    }
+//    //返回验证码图片
+//    public void getCode(HttpSession session, HttpServletResponse httpServletResponse) throws IOException {
+//        httpServletResponse.setHeader("Cache-Control","no-store");
+//        //允许跨域
+//        httpServletResponse.setHeader("Access-Control-Allow-Credentials","true");
+//        httpServletResponse.setHeader("Pragma","no-cache");
+//        httpServletResponse.setDateHeader("Expires",0);
+//        Cookie cookie = new Cookie("cookie_name", "cookie_value");
+//        cookie.setSecure(true);
+//        httpServletResponse.addCookie(cookie);
+////        httpServletResponse.setContentType("image/gif");
+//
+//        //生成验证码对象,三个参数分别是宽、高、位数
+//        SpecCaptcha captcha = new SpecCaptcha(130, 48, 5);
+//        //设置验证码的字符类型为数字和字母混合
+//        captcha.setCharType(Captcha.TYPE_DEFAULT);
+//        // 设置内置字体
+//        captcha.setCharType(Captcha.FONT_1);
+//        //验证码存入session
+//        session.setAttribute("verifyCode",captcha.text().toLowerCase()+"");
+//        log.info("session为{}",session.hashCode());
+//        log.info("验证码为{}",captcha.text().toLowerCase());
+//        //输出图片流
+//        captcha.out(httpServletResponse.getOutputStream());
+//    }
 
     //注册新用户(无验证码版)
     public void register(RegisterDTO registerDTO) {
